@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="common/template_head::head('Product '+${product.name})">
+    </head>
+<body>
+    <header th:replace="common/template_menu::header">
+
+    </header>
+    <div id="Content">
+
+        <div id="BackLink"><a th:href="@{'/catalog/category?categoryId='+${product.categoryId}}" th:text="'Retrun to '+ ${product.categoryId}">Return to </a></div>
+
+        <div id="Catalog">
+
+            <h2 th:text="${product.name}">Amazon Parrot</h2>
+
+            <table>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Product ID</th>
+                    <th>Description</th>
+                    <th>List Price</th>
+                    <th>&nbsp;</th>
+                </tr>
+
+                <tr th:each="item:${itemList}">
+                    <td><a th:href="@{'/catalog/item?itemId='+${item.itemId}+'&productId='+${product.productId}}" th:text="${item.itemId}">Item Id</a></td>
+                    <td th:text="${product.productId}">Product</td>
+                    <td th:text="${item.attribute1}">Attr1</td>
+                    <td th:text="${item.listPrice}">listPrice</td>
+                    <td><a th:href="@{'/order/addtocart?itemId='+${item.itemId}}">Add to Cart</a></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+    <footer th:replace="common/template_menu::footer">
+
+    </footer>
+</body>
+</html>

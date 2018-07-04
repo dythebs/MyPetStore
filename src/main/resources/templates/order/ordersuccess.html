@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('Order')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+<div id="Content"><ul class="messages"><li>Thank you, your order has been submitted.</li></ul>
+
+    <div id="BackLink"><a href="/catalog/main">Return to Main Menu</a></div>
+
+    <div id="Catalog">
+
+        <table>
+            <tr>
+                <th align="center" colspan="2">Order #<th:block th:text="${order.getOrderId()}"></th:block>
+                    <th:block th:text="${#dates.format(order.orderDate.getTime(),'yyyy-MM-dd HH:mm:ss')}"></th:block></th>
+            </tr>
+            <tr>
+                <th colspan="2">Payment Details</th>
+            </tr>
+            <tr>
+                <td>Card Type:</td>
+                <td th:text="${order.cardType}">Visa</td>
+            </tr>
+            <tr>
+                <td>Card Number:</td>
+                <td th:text="${order.creditCard}">999 9999 9999 9999 * Fake
+                    number!</td>
+            </tr>
+            <tr>
+                <td>Expiry Date (MM/YYYY):</td>
+                <td th:text="${order.expiryDate}">12/03</td>
+            </tr>
+            <tr>
+                <th colspan="2">Billing Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.getBillToFirstName()}">ABC</td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.getBillToLastName()}">XYX</td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td th:text="${order.getBillAddress1()}">901 San Antonio Road</td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.getBillAddress2()}">MS UCUP02-206</td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.getBillCity()}">Palo Alto</td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.getBillState()}">CA</td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.getBillZip()}">94303</td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.getBillCountry()}">USA</td>
+            </tr>
+            <tr>
+                <th colspan="2">Shipping Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.getBillToFirstName()}">ABC</td></tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.getBillToLastName()}">XYX</td></tr>
+            <tr>
+                <td >Address 1:</td>
+                <td th:text="${order.getBillAddress1()}">901 San Antonio Road</td></tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.getBillAddress2()}">MS UCUP02-206</td></tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.getBillCity()}">Palo Alto</td></tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.getBillState()}">CA</td></tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.getBillZip()}">94303</td></tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.getBillCountry()}">USA</td></tr>
+            <tr>
+                <td>Courier:</td>
+                <td>UPS</td>
+            </tr>
+            <tr>
+                <td colspan="2">Status: P</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

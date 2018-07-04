@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('My Order')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+<div id="Content">
+    <h2>My Orders</h2>
+    <table>
+        <tr>
+            <th>Order ID</th>
+            <th>Date</th>
+            <th>Total Price</th></tr>
+        <tr th:each="order:${orderList}">
+            <td>
+                <a th:href="@{'/order/seeorder?orderId='+${order.getOrderId()}}" th:text="${order.getOrderId()}">1002</a></td>
+            <td th:text="${#dates.format(order.orderDate.getTime(),'yyyy-MM-dd HH:mm:ss')}">2018/06/08 12:00:00</td>
+            <td th:text="${order.getTotalPrice()}">$18.50</td></tr>
+
+    </table>
+</div>
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

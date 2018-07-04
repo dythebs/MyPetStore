@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/template_head::head('Confirm Order')">
+
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+    <div id="BackLink">
+        <a href="/catalog/main">Return to Main Menu</a></div>
+    <div id="Catalog">Please confirm the information below and then press continue...
+        <table>
+            <tr>
+                <th align="center" colspan="2">
+                    <font size="4">
+                        <b>Order</b>
+                    </font>
+                    <br />
+                    <font size="3">
+                        <b th:text="${#dates.format(order.orderDate.getTime(),'yyyy-MM-dd HH:mm:ss')}">4564546</b>
+                    </font>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">Billing Address</th></tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.getBillToFirstName()}"></td></tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.getBillToLastName()}">XYX</td></tr>
+            <tr>
+                <td>Address 1:</td>
+                <td th:text="${order.getBillAddress1()}">901 San Antonio Road</td></tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.getBillAddress2()}">MS UCUP02-206</td></tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.getBillCity()}">Palo Alto</td></tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.getBillState()}">CA</td></tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.getBillZip()}">94303</td></tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.getBillCountry()}">USA</td></tr>
+            <tr>
+                <th colspan="2">Shipping Address</th></tr>
+            <tr>
+                <td>First name:</td>
+                <td th:text="${order.getBillToFirstName()}">ABC</td></tr>
+            <tr>
+                <td>Last name:</td>
+                <td th:text="${order.getBillToLastName()}">XYX</td></tr>
+            <tr>
+                <td >Address 1:</td>
+                <td th:text="${order.getBillAddress1()}">901 San Antonio Road</td></tr>
+            <tr>
+                <td>Address 2:</td>
+                <td th:text="${order.getBillAddress2()}">MS UCUP02-206</td></tr>
+            <tr>
+                <td>City:</td>
+                <td th:text="${order.getBillCity()}">Palo Alto</td></tr>
+            <tr>
+                <td>State:</td>
+                <td th:text="${order.getBillState()}">CA</td></tr>
+            <tr>
+                <td>Zip:</td>
+                <td th:text="${order.getBillZip()}">94303</td></tr>
+            <tr>
+                <td>Country:</td>
+                <td th:text="${order.getBillCountry()}">USA</td></tr>
+        </table>
+        <a href="/order/confirm" class="Button">Confirm</a></div>
+</div>
+
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>

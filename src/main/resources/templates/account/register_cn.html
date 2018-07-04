@@ -1,0 +1,267 @@
+<html lang="en" class="translated-ltr"><head>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen">
+    <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org">
+    <title>注册</title>
+    <meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+    <meta http-equiv="Cache-Control" content="max-age=0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="Pragma" content="no-cache">
+    <style type="text/css">
+        #error
+        {
+            color:red;
+        }
+        #ok
+        {
+            color:green;
+        }
+        #code
+        {
+            font-family:Arial;
+            font-style:italic;
+            font-weight:bold;
+            border:0;
+            letter-spacing:2px;
+            color:blue;
+        }
+    </style><script type="text/javascript">
+    function ajaxcheckUserName() {
+        var username = document.getElementById("stripes-295676585").value;
+        if(username == ""){
+            document.getElementById("ok").innerText = "";
+            document.getElementById("error").innerText = "用户名不能为空！";
+            return false;
+        }
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET","/account/checkusername?username="+username,false);
+        xmlhttp.send()
+        if(xmlhttp.responseText=="true"){
+            document.getElementById("error").innerText = "";
+            document.getElementById("ok").innerText = "√用户名可用";
+            return true;
+        }else {
+            document.getElementById("ok").innerText = "";
+            document.getElementById("error").innerText = "×该用户名已存在！";
+            return false;
+        }
+    }
+    function checkUserName() {
+        var username = document.getElementById("stripes-295676585").value;
+        if(username == ""){
+            alert("用户名不能为空");
+            return false;
+        }
+
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET","/account/checkusername?username="+username,false);
+        xmlhttp.send()
+        if(xmlhttp.responseText=="true"){
+            return true;
+        }else {
+            alert("该用户已存在!");
+            return false;
+        }
+    }
+    var code ; //在全局定义验证码
+    //产生验证码
+    window.onload = function createCode(){
+        code = "";
+        var codeLength = 4;//验证码的长度
+        var checkCode = document.getElementById("code");
+        var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+            'S','T','U','V','W','X','Y','Z');//随机数
+        for(var i = 0; i < codeLength; i++) {//循环操作
+            var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）
+            code += random[index];//根据索引取得随机数加到code上
+        }
+        checkCode.value = code;//把code值赋给验证码
+        return false;
+    }
+    //校验验证码
+    function validate(){
+        var inputCode = document.getElementById("input").value.toUpperCase(); //取得输入的验证码并转化为大写
+        if(inputCode.length <= 0) { //若输入的验证码长度为0
+            alert("请输入验证码！"); //则弹出请输入验证码
+            return false;
+        }
+        else if(inputCode != code ) { //若输入的验证码与产生的验证码不一致时
+            alert("验证码输入错误！@_@"); //则弹出验证码输入错误
+            //window.location.reload(true);
+            code = "";
+            var codeLength = 4;//验证码的长度
+            var checkCode = document.getElementById("code");
+            var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+                'S','T','U','V','W','X','Y','Z');//随机数
+            for(var i = 0; i < codeLength; i++) {//循环操作
+                var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）
+                code += random[index];//根据索引取得随机数加到code上
+            }
+            checkCode.value = code;//把code值赋给验证码
+            document.getElementById("input").value = "";
+            return false;
+        }
+        else { //输入正确时
+            return checkUserName();
+        }
+    }
+</script><link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css"><link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css"><link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css"><link type="text/css" rel="stylesheet" charset="UTF-8" href="https://translate.googleapis.com/translate_static/css/translateelement.css"></head>
+
+
+<body>
+<header>
+    <div id="Logo">
+        <div id="LogoContent">
+            <a href="/catalog/main">
+                <img src="/images/logo-topbar.gif"></a>
+        </div>
+    </div>
+    <div id="Menu">
+        <div id="MenuContent">
+            <a href="/order/cart">
+                <img align="middle" name="img_cart" src="/images/cart.gif"></a>
+            <img align="middle" src="/images/separator.gif">
+            <a href="/account/viewSignIn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">登录</font></font></a>
+
+            <img align="middle" src="/images/separator.gif">
+            <a href="/account/register"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">English</font></font></a>
+
+            <img align="middle" src="/images/separator.gif">
+            <a href="/help"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">？</font></font></a></div>
+    </div>
+    <div id="Search">
+        <div id="SearchContent">
+            <form method="post" action="/search">
+                <input size="14" name="keyword" type="text">
+                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" value="搜索"></font></font>
+            </form>
+        </div>
+    </div>
+    <div id="QuickLinks">
+        <a href="/catalog/category?categoryId=FISH">
+            <img src="/images/sm_fish.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=DOGS">
+            <img src="/images/sm_dogs.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=REPTILES">
+            <img src="/images/sm_reptiles.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=CATS">
+            <img src="/images/sm_cats.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=BIRDS">
+            <img src="/images/sm_birds.gif"></a>
+    </div>
+</header>
+
+<div id="Content">
+
+    <div id="Catalog"><form method="post" action="/account/regist" onsubmit="return validate()">
+
+        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户信息</font></font></h3>
+
+        <table>
+            <tbody><tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户名：</font></font></td>
+                <td><input name="username" id="stripes-295676585" type="text" onblur="ajaxcheckUserName()"><script type="text/javascript">setTimeout(function(){try{var z=document.getElementById('stripes-295676585');z.focus();z.select();}catch(e){}},1);</script><span id="error"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></span><span id="ok"></span></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">新密码：</font></font></td>
+                <td><input name="password" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">重复输入密码：</font></font></td>
+                <td><input name="repeatedPassword" type="text"></td>
+            </tr>
+            </tbody></table>
+
+        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">帐户信息</font></font></h3>
+
+        <table>
+            <tbody><tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">名字：</font></font></td>
+                <td><input name="account.firstName" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">姓：</font></font></td>
+                <td><input name="account.lastName" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">电子邮件：</font></font></td>
+                <td><input size="40" name="account.email" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">电话：</font></font></td>
+                <td><input name="account.phone" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地址1：</font></font></td>
+                <td><input size="40" name="account.address1" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">地址2：</font></font></td>
+                <td><input size="40" name="account.address2" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">市：</font></font></td>
+                <td><input name="account.city" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">州：</font></font></td>
+                <td><input size="4" name="account.state" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">压缩：</font></font></td>
+                <td><input size="10" name="account.zip" type="text"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">国家：</font></font></td>
+                <td><input size="15" name="account.country" type="text"></td>
+            </tr>
+            </tbody></table>
+
+        <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">档案信息</font></font></h3>
+
+        <table>
+            <tbody><tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">语言首选项：</font></font></td>
+                <td><select name="account.languagePreference">
+                    <option value="english"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">英语</font></font></option><option value="japanese"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">日本</font></font></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">喜欢的类别：</font></font></td>
+                <td><select name="account.favouriteCategoryId">
+                    <option value="FISH"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">鱼</font></font></option><option value="DOGS"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">小狗</font></font></option><option value="REPTILES"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">爬行动物</font></font></option><option value="CATS"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">猫</font></font></option><option value="BIRDS"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">鸟类</font></font></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">启用MyList</font></font></td>
+                <td><input name="account.listOption" type="checkbox" value="true"></td>
+            </tr>
+            <tr>
+                <td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">启用MyBanner</font></font></td>
+                <td><input name="account.bannerOption" type="checkbox" value="true"></td>
+            </tr>
+
+            </tbody></table>
+
+        <input type="text" id="input">
+        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="button" id="code" onclick="createCode()" value="TCVN "></font></font>
+        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input name="newAccount" type="submit" value="保存帐户信息"></font></font>
+
+        <div style="display: none;"><input type="hidden" name="_sourcePage" value="BgVyyAJk1DotbFDN_YrKSGhx7FCj-adsPBUgAh6HMkclyG4qIopHVVMzWR2Cj0DG"><input type="hidden" name="__fp" value="7QRIOcFsDka36hKsjfeeRyIJldkcMWN40pkGDr9pW2-nrtdO3Mw78x7774w8CBqMKTBT1oHIZwe9ESoz8HSUcKemKknO6fqWWopOyNbwG3eP96kXcuh6BAaihoKlglAehGHa4Of0Wl8="></div></form></div>
+
+</div>
+
+
+
+<footer>
+    <div id="PoweredBy">&nbsp;
+        <a href="http://csu.edu.cn"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">csu.edu.cn</font></font></a></div>
+    <div id="Banner"></div>
+</footer><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻译"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+<div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="https://www.gstatic.com/images/branding/product/1x/translate_24dp.png" width="20" height="20" alt="Google 翻译"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">提供更好的翻译建议</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>

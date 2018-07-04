@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <header th:fragment="header">
+        <div id="Logo">
+            <div id="LogoContent">
+                <a href="/catalog/main">
+                    <img src="/images/logo-topbar.gif" /></a>
+            </div>
+        </div>
+        <div id="Menu">
+            <div id="MenuContent">
+                <a href="/order/cart">
+                    <img align="middle" name="img_cart" src="/images/cart.gif" /></a>
+                <img align="middle" src="/images/separator.gif" />
+                <th:block th:if="${session.account==null}"><a href="/account/viewSignIn">Sign In</a></th:block>
+                <th:block th:if="${session.account!=null}">
+                    <a href="/account/signout">Sign Out</a>
+                    <img align="middle" src="/images/separator.gif" />
+                    <a href="/account/myaccount">My Account</a>
+                </th:block>
+                <img align="middle" src="/images/separator.gif" />
+                <a href="/help">?</a></div>
+        </div>
+        <div id="Search">
+            <div id="SearchContent">
+                <form method="post" action="/search">
+                    <input size="14" name="keyword" type="text" />
+                    <input type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+        <div id="QuickLinks">
+            <a href="/catalog/category?categoryId=FISH">
+                <img src="/images/sm_fish.gif" /></a>
+            <img src="/images/separator.gif" />
+            <a href="/catalog/category?categoryId=DOGS">
+                <img src="/images/sm_dogs.gif" /></a>
+            <img src="/images/separator.gif" />
+            <a href="/catalog/category?categoryId=REPTILES">
+                <img src="/images/sm_reptiles.gif" /></a>
+            <img src="/images/separator.gif" />
+            <a href="/catalog/category?categoryId=CATS">
+                <img src="/images/sm_cats.gif" /></a>
+            <img src="/images/separator.gif" />
+            <a href="/catalog/category?categoryId=BIRDS">
+                <img src="/images/sm_birds.gif" /></a>
+        </div>
+    </header>
+
+    <footer th:fragment="footer">
+        <div id="PoweredBy">&nbsp
+            <a href="http://csu.edu.cn">csu.edu.cn</a></div>
+        <div id="Banner"></div>
+    </footer>
+</html>

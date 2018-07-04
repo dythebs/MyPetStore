@@ -1,0 +1,147 @@
+<html lang="en"><head>
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen">
+
+    <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org">
+    <title>Sign In</title>
+    <meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+    <meta http-equiv="Cache-Control" content="max-age=0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
+    <meta http-equiv="Pragma" content="no-cache">
+    <style type="text/css">
+        #code
+        {
+            font-family:Arial;
+            font-style:italic;
+            font-weight:bold;
+            border:0;
+            letter-spacing:2px;
+            color:blue;
+        }
+    </style><script type="text/javascript">
+    var code ; //在全局定义验证码
+    //产生验证码
+    window.onload = function createCode(){
+        code = "";
+        var codeLength = 4;//验证码的长度
+        var checkCode = document.getElementById("code");
+        var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+            'S','T','U','V','W','X','Y','Z');//随机数
+        for(var i = 0; i < codeLength; i++) {//循环操作
+            var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）
+            code += random[index];//根据索引取得随机数加到code上
+        }
+        checkCode.value = code;//把code值赋给验证码
+        return false;
+    }
+    //校验验证码
+    function validate(){
+        var inputCode = document.getElementById("input").value.toUpperCase(); //取得输入的验证码并转化为大写
+        if(inputCode.length <= 0) { //若输入的验证码长度为0
+            alert("请输入验证码！"); //则弹出请输入验证码
+            return false;
+        }
+        else if(inputCode != code ) { //若输入的验证码与产生的验证码不一致时
+            alert("验证码输入错误！@_@"); //则弹出验证码输入错误
+            //window.location.reload(true);
+            code = "";
+            var codeLength = 4;//验证码的长度
+            var checkCode = document.getElementById("code");
+            var random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R',
+                'S','T','U','V','W','X','Y','Z');//随机数
+            for(var i = 0; i < codeLength; i++) {//循环操作
+                var index = Math.floor(Math.random()*36);//取得随机数的索引（0~35）
+                code += random[index];//根据索引取得随机数加到code上
+            }
+            checkCode.value = code;//把code值赋给验证码
+            document.getElementById("input").value = "";
+            return false;
+        }
+        else { //输入正确时
+            return true;
+        }
+    }
+</script><link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css"></head>
+
+
+<body>
+<header>
+    <div id="Logo">
+        <div id="LogoContent">
+            <a href="/catalog/main">
+                <img src="/images/logo-topbar.gif"></a>
+        </div>
+    </div>
+    <div id="Menu">
+        <div id="MenuContent">
+            <a href="/order/cart">
+                <img align="middle" name="img_cart" src="/images/cart.gif"></a>
+            <img align="middle" src="/images/separator.gif">
+            <a href="/account/viewSignIn">Sign In</a>
+
+            <img align="middle" src="/images/separator.gif">
+            <a href="/account/viewSignIn_cn">中文</a>
+
+            <img align="middle" src="/images/separator.gif">
+            <a href="/help">?</a></div>
+    </div>
+    <div id="Search">
+        <div id="SearchContent">
+            <form method="post" action="/search">
+                <input size="14" name="keyword" type="text">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </div>
+    <div id="QuickLinks">
+        <a href="/catalog/category?categoryId=FISH">
+            <img src="/images/sm_fish.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=DOGS">
+            <img src="/images/sm_dogs.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=REPTILES">
+            <img src="/images/sm_reptiles.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=CATS">
+            <img src="/images/sm_cats.gif"></a>
+        <img src="/images/separator.gif">
+        <a href="/catalog/category?categoryId=BIRDS">
+            <img src="/images/sm_birds.gif"></a>
+    </div>
+</header>
+<div id="Content">
+
+    <div id="Catalog">
+        <form method="post" action="/account/signin" onsubmit="return validate();">
+            <p>Please enter your username and password.</p>
+            <p>Username:
+                <input name="username" id="stripes--739340047" type="text" value="j2ee">
+                <script type="text/javascript">setTimeout(function() {
+                        try {
+                            var z = document.getElementById('stripes--739340047');
+                            z.focus();
+                            z.select();
+                        } catch(e) {}
+                    },
+                    1);</script>
+                <br>Password:
+                <input name="password" type="password" value="j2ee"></p>
+            <input type="text" id="input">
+            <input type="button" id="code" onclick="createCode()" value="THS2">
+            <input name="signon" type="submit" value="Login">
+            <div style="display: none;">
+                <input type="hidden" name="_sourcePage" value="TsBuZEUwJjstbFDN_YrKSGhx7FCj-adsnxMB1RkQ3Dk5-NATqyu27Q==">
+                <input type="hidden" name="__fp" value="Zl7DnXgcIPs="></div>
+        </form>Need a user name and password?
+        <a href="/account/register">Register Now!</a></div>
+</div>
+
+<footer>
+    <div id="PoweredBy">&nbsp;
+        <a href="http://csu.edu.cn">csu.edu.cn</a></div>
+    <div id="Banner"></div>
+</footer>
+
+</body></html>

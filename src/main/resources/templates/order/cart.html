@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" id="html">
+<head th:replace="common/template_head::head('Cart')">
+</head>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+    function doSubmit() {
+        $.ajax({
+            type:'post',
+            url:'/order/updatecart',
+            data:$("#cartForm").serialize(),
+            cache:false,
+            dataType:'html',
+            success:function(data){
+                document.getElementById("html").innerHTML = data;
+            }
+        });
+    }
+    function doRemove(itemid) {
+        xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET","/order/removefromcart?itemId="+itemid,false);
+        xmlhttp.send()
+        document.getElementById("html").innerHTML =xmlhttp.responseText;
+    }
+</script>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+<div id="Content">
+
+    <div id="BackLink"><a href="/catalog/main">Return to Main Menu</a></div>
+
+    <div id="Catalog">
+
+        <div id="Cart">
+
+            <h2>Shopping Cart</h2>
+            <form method="post" action="/order/updatecart" id="cartForm">
+                <table>
+                    <tr>
+                        <th><b>Item ID</b></th>
+                        <th><b>Product ID</b></th>
+                        <th><b>Description</b></th>
+                        <th><b>In Stock?</b></th>
+                        <th><b>Quantity</b></th>
+                        <th><b>List Price</b></th>
+                        <th><b>Total Cost</b></th>
+                        <th>&nbsp;</th>
+                    </tr>
+
+
+
+
+                    <tr th:each="item:${cartItemList}">
+                        <td><a th:href="@{'/catalog/item?itemId='+${item.item.itemId}}" th:text="${item.item.itemId}">EST-13</a></td>
+                        <td th:text="${item.item.productId}">RP-LI-02</td>
+                        <td><th:block th:text="${item.item.attribute1}"></th:block>
+
+                            <th:block th:text="${item.item.product.name}"></th:block></td>
+                        <td>true</td>
+                        <td><input size="3" th:name="${item.item.getItemId()}" type="text" th:value="${item.quantity}" /></td>
+                        <td th:text="'$'+${item.item.listPrice}">$18.50</td>
+                        <td th:text="'$'+${item.total}"></td>
+                        <td><a th:onclick="'javascript:doRemove(\''+${item.item.itemId}+'\');'" class="Button">Remove</a></td>
+                    </tr>
+
+                    <tr th:if="${cart.getSubTotal()==0}">
+                        <td colspan="8"><b>Your cart is empty.</b></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="7">Sub Total: $<th:block th:text="${cart.getSubTotal()}"></th:block><input name="updateCartQuantities" type="button" onclick="doSubmit()" value="Update Cart" /></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+
+                <div style="display: none;"><input type="hidden" name="_sourcePage" value="ecHxmnA3uIMtbFDN_YrKSPBeZwcuRyVWVDMYlJ4pip0=" /><input type="hidden" name="__fp" value="jcMUQlM9OJk=" /></div></form>
+            <th:block th:if="${cart.getSubTotal()!=0}"><a href="/order/checkout" class="Button">Proceed to Checkout</a></th:block>
+        </div>
+
+        <div id="MyList">
+
+
+
+        </div>
+
+        <div id="Separator">&nbsp;</div>
+    </div>
+
+</div>
+
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>
+</html>
