@@ -3,6 +3,36 @@
     <head th:replace="common/template_head::head('MyPetStore Main')">
 
     </head>
+    <style type="text/css">
+        #box li{
+            position: absolute;
+            transition: 0.5s;
+        }
+        .item1{
+            transform: scale(0.81);/*缩小*/
+            transform-origin: 0% 100%; /*变化原点*/
+            z-index: 1;
+        }
+        .item2{
+            transform: translateX(200px) scale(0.81);
+            transform-origin: 0% 100%;
+            z-index: 2;
+        }
+        .item3{
+            transform: translateX(400px);
+            z-index: 3;
+        }
+        .item4{
+            transform: translateX(600px) scale(0.81);
+            transform-origin: 100% 100%;
+            z-index: 2;
+        }
+        .item5{
+            transform: translateX(800px) scale(0.81);
+            transform-origin: 100% 100%;
+            z-index: 1;
+        }
+    </style>
     <body>
         <header th:replace="common/template_menu::header">
 
@@ -15,6 +45,121 @@
                     </th:block>
                 </div>
             </div>
+            <div>
+                <ul id="box" th:margin-left:30px >
+                    <li class="item1" onclick="prepic()"><img src="/images/fish3.gif" width="250px" height="250px"></li>
+                    <li class="item2" onclick="prepic()"><img src="/images/dog2.gif" width="250px" height="250px"></li>
+                    <li class="item3" onclick="fff()"><img src="/images/lizard2.gif" width="250px" height="250px"></li>
+                    <li class="item4" onclick="nextpic()"><img src="/images/cat1.gif" width="250px" height="250px"></li>
+                    <li class="item5" onclick="nextpic()"><img src="/images/bird1.gif" width="250px" height="250px"></li>
+                </ul>
+                <img src="/images/bg.png" width="500px" height="300px">
+            </div>
+            <script type="text/javascript">
+                var box=document.getElementById('box');
+                var aLi=box.getElementsByTagName('li');
+                var aName=[];
+                var fish_url = "http://localhost:8080/catalog/item?itemId=EST-4&productId=FI-FW-01";
+                var dog_url = "http://localhost:8080/catalog/item?itemId=EST-6&productId=K9-BD-01";
+                var lizard_url = "http://localhost:8080/catalog/item?itemId=EST-13&productId=RP-LI-02";
+                var cat_url = "http://localhost:8080/catalog/item?itemId=EST-16&productId=FL-DLH-02";
+                var bird_url = "http://localhost:8080/catalog/item?itemId=EST-18&productId=AV-CB-01";
+
+                for(var item of aLi){
+                    aName.push(item.classList[0]);//获取类名并存储到类名中
+                }
+                function fff() {
+                    window.location.href = lizard_url;
+                }
+                function nextpic(){
+                    aName.unshift(aName[4]);//向数组第一个位置插入一个元素(第五个元素)
+                    aName.pop();//删掉最后一个元素
+                    for(var i=0,len=aLi.length;i<len;i++){
+                        aLi[i].setAttribute("class",aName[i]);
+                        if(aName[i]=="item1"||aName[i]=="item2"){
+                            aLi[i].onclick = function(){prepic()};
+                        }else if(aName[i]=="item3"){
+                            console.log(i);
+                            switch (i) {
+                                case 0:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = fish_url;
+                                    };
+                                    break;
+                                case 1:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = dog_url;
+                                    };
+                                    break;
+                                case 2:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = lizard_url;
+                                    };
+                                    break;
+                                case 3:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = cat_url;
+                                    };
+                                    break;
+                                case 4:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = bird_url;
+                                    };
+                                    break;
+                            }
+                        }else{
+                            aLi[i].onclick = function(){nextpic()};
+                        }
+                    }
+
+
+                }
+                //把类名重新设置
+                //向上翻页
+                function prepic(){
+                    aName.push(aName[0]);//在数组最后一个位置插入第一个元素
+                    aName.shift();//把数组第一个元素删掉
+                    for(var i=0,len=aLi.length;i<len;i++){
+                        aLi[i].setAttribute("class",aName[i]);
+                        if(aName[i]=="item1"||aName[i]=="item2"){
+                            aLi[i].onclick = function(){prepic()};
+                        }else if(aName[i]=="item3"){
+                            console.log(i);
+                            switch (i) {
+                                case 0:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = fish_url;
+                                    };
+                                    break;
+                                case 1:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = dog_url;
+                                    };
+                                    break;
+                                case 2:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = lizard_url;
+                                    };
+                                    break;
+                                case 3:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = cat_url;
+                                    };
+                                    break;
+                                case 4:
+                                    aLi[i].onclick = function () {
+                                        window.location.href = bird_url;
+                                    };
+                                    break;
+                                }
+                            }else{
+                            aLi[i].onclick = function(){nextpic()};
+                        }
+                    }
+
+                }
+
+            </script>
             <div id="Main">
                 <div id="Sidebar">
                     <div id="SidebarContent">

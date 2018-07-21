@@ -8,6 +8,8 @@ import org.csu.mypetstore.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountServiceImpl implements AccountService {
     @Autowired
@@ -44,5 +46,8 @@ public class AccountServiceImpl implements AccountService {
         logMapper.addRecord(new Record(username,record));
     }
 
-
+    @Override
+    public List<Record> searchRecord(String username) {
+        return logMapper.searchRecord(username);
+    }
 }

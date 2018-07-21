@@ -2,6 +2,7 @@ package org.csu.mypetstore.control;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.csu.mypetstore.domain.Account;
+import org.csu.mypetstore.domain.Record;
 import org.csu.mypetstore.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -127,5 +130,22 @@ public class AccountController {
         }else{
             return "false";
         }
+    }
+
+    @GetMapping("account/searchRecord")
+    public String viewRecord(@RequestParam("page") Integer page, Model model){
+        Account account = (Account)request.getSession().getAttribute("account");
+        List<Record> recordList = accountService.searchRecord(account.getUsername());
+
+        int totolpage = recordList.size()/10;
+        if(recordList.size()%10 != 0)
+            totolpage += 1;
+        List<Record> recordList1 = new ArrayList<>();
+        for(int i = (page-1)*10 ; i < page * 10 && i < recordList.size() ; i++)
+            recordList1.add(recordList.get(i));
+        model.addAttribute(recordList1);
+        model.addAttribute("totolpage",totolpage);
+        model.addAttribute("nowpage",page);
+        return "footprint/footprint";
     }
 }

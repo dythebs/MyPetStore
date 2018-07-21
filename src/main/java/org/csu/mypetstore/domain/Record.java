@@ -1,6 +1,9 @@
 package org.csu.mypetstore.domain;
 
-public class Record {
+import java.io.Serializable;
+
+public class Record implements Serializable {
+
     private String username;
     private String record;
     public Record(){

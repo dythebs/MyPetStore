@@ -1,7 +1,10 @@
 package org.csu.mypetstore.service;
 
 import org.csu.mypetstore.domain.Account;
+import org.csu.mypetstore.domain.Record;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 public interface AccountService {
     public Account getAccount(String username) ;
@@ -14,4 +17,6 @@ public interface AccountService {
     public void updateAccount(Account account) ;
 
     public void addRecord(String username,String record);
+
+    public List<Record> searchRecord(String username);
 }

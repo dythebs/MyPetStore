@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" id="html">
+<head th:replace="common/template_head::head('My FootPrint')">
+</head>
+<body>
+<header th:replace="common/template_menu::header">
+
+</header>
+
+<div id="Content">
+
+    <div id="BackLink"><a href="/catalog/main">Return to Main Menu</a></div>
+
+        <div id="FootPrint">
+
+            <h2></h2>
+                <table th:align="center">
+                    <tr>
+                        <th><b>User Name</b></th>
+                        <th><b>Behavior</b></th>
+                    </tr>
+
+                    <tr th:each="record:${recordList}">
+                        <td th:text="${record.getUsername()}">username</a></td>
+                        <td th:text="${record.getRecord()}">record</td>
+                    </tr>
+                </table>
+            <table th:align="center">
+                <script>
+                    function lastPage(totolpage) {
+                        window.location.href = '/account/searchRecord?page=' + totolpage;
+                    }
+                    function prePage(nowpage) {
+                        if(nowpage == 1){
+                            alert("已经是第一页");
+                        }else {
+                            window.location.href = '/account/searchRecord?page=' + (nowpage-1);
+                        }
+                    }
+                    function nextPage(nowpage,totolpage) {
+                        if(nowpage==totolpage){
+                            alert("已经是最后一页");
+                        }else {
+                            window.location.href = '/account/searchRecord?page=' + (parseInt(nowpage)+1);
+                        }
+                    }
+                </script>
+                <tr>
+                    <th><input type="button" value="首页" onclick="window.location.href='/account/searchRecord?page=1'"></th>
+                    <th><input type="button" value="上一页" th:onclick="'javascript:prePage(\''+${nowpage}+'\')'"></th>
+                    <th>第<th:block th:text="${nowpage}"></th:block>页</th>
+                    <th>/</th>
+                    <th>共<th:block th:text="${totolpage}"></th:block>页</th>
+                    <th><input type="button" value="下一页" th:onclick="'javascript:nextPage(\''+${nowpage}+'\',\''+${totolpage}+'\')'"></th>
+                    <th><input type="button" value="尾页" th:onclick="'javascript:lastPage(\''+${totolpage}+'\')'"></th>
+                </tr>
+            </table>
+        </div>
+
+
+</div>
+
+<footer th:replace="common/template_menu::footer">
+
+</footer>
+</body>

@@ -10,6 +10,12 @@
     INSERT INTO LOGSHEET VALUES (#{username},#{record})
   </select>
 
-
+    <select id="searchRecord" parameterType="java.lang.String" resultType="org.csu.mypetstore.domain.Record">
+        SELECT
+         userId AS username,
+         record AS record
+         FROM LOGSHEET
+         WHERE userId = #{usernmae}
+    </select>
 
 </mapper>
