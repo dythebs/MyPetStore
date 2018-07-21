@@ -32,7 +32,7 @@ This sample is a web application built on MyBatis, Spring Boot(Spring MVC, Sprin
 ![](https://user-images.githubusercontent.com/37578699/43036099-27d135f0-8d2d-11e8-9e64-5c2f10531725.png)
 * Add internationalization on **sign up** and **sign in**
 ![](https://user-images.githubusercontent.com/37578699/43036100-28150a28-8d2d-11e8-8d5f-37c1ce7ecbe8.png)
-* Add ajax on **sign in** and **cart**
+* Add ajax on **sign up** and **cart**
 ![](https://user-images.githubusercontent.com/37578699/43036163-65de0b1a-8d2e-11e8-8009-e404a874be05.png)
 * Record the user's browsing behavior
 ![](https://user-images.githubusercontent.com/37578699/43036102-290b7c96-8d2d-11e8-82bb-47a2cb923aa8.png)
