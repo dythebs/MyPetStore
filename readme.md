@@ -1,6 +1,6 @@
 # MyPetStore
 
-This sample is a web application built on MyBatis, Spring Boot(Spring MVC, Spring Security) and Thymeleaf. This is another implementation of MyBatis JPetStore sample application (https://github.com/mybatis/jpetstore-6),and some [addtional features](#jump) are added.
+This sample is a web application built on MyBatis, Spring Boot(Spring MVC, Spring Security) and Thymeleaf. This is another implementation of MyBatis JPetStore sample application (https://github.com/mybatis/jpetstore-6) ,and some addtional features are added.
 
 ## Index Page
 
@@ -26,7 +26,7 @@ This sample is a web application built on MyBatis, Spring Boot(Spring MVC, Sprin
 ## Project Structure
 
 
-## <span id="jump">Additional Features</span>
+## Additional Features
 
 * Add captcha functionality on **sign up** and **sign in**
 ![](https://user-images.githubusercontent.com/37578699/43036099-27d135f0-8d2d-11e8-9e64-5c2f10531725.png)
