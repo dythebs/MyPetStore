@@ -1,6 +1,6 @@
 # MyPetStore
 
-This sample is a web application built on MyBatis, Spring Boot(Spring MVC, Spring Security) and Thymeleaf. This is another implementation of MyBatis JPetStore sample application (https://github.com/mybatis/jpetstore-6) ,and some [addtional features](#addtional-features) are added.
+This sample is a web application built on MyBatis, Spring Boot(Spring MVC, Spring Security) and Thymeleaf. This is another implementation of MyBatis JPetStore sample application (https://github.com/mybatis/jpetstore-6) ,and some [additional features](#additional-features) are added.
 
 ## Index Page
 
