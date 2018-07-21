@@ -25,6 +25,63 @@ This sample is a web application built on MyBatis, Spring Boot(Spring MVC, Sprin
 
 ## Project Structure
 
+```
+.
+│  .gitattributes
+│  .gitignore
+│  jpetstore.sql  //Create Database Script
+│  mvnw
+│  mvnw.cmd
+│  pom.xml
+│  readme.md
+│
+├─.mvn
+│
+└─src
+    ├─main
+    │  ├─java
+    │  │  └─org
+    │  │      └─csu
+    │  │          └─mypetstore
+    │  │              │  MypetstoreApplication.java
+    │  │              │
+    │  │              ├─control
+    │  │              │
+    │  │              ├─dao
+    │  │              │
+    │  │              ├─domain
+    │  │              │
+    │  │              └─service
+    │  │                  │
+    │  │                  └─impl
+    │  │
+    │  └─resources
+    │      │  application.properties   //Database Configuration
+    │      │
+    │      ├─mapper
+    │      │
+    │      ├─static
+    │      │  ├─css
+    │      │  │
+    │      │  ├─images
+    │      │  │
+    │      │  └─js
+    │      │
+    │      └─templates
+    │          │
+    │          ├─account
+    │          │
+    │          ├─catalog
+    │          │
+    │          ├─common
+    │          │
+    │          ├─footprint
+    │          │
+    │          └─order
+    │
+    └─test
+
+```
 
 ## Additional Features
 
